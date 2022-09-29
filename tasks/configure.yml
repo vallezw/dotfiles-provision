@@ -9,6 +9,11 @@
     state: link
     force: yes
   loop: [".xinitrc", ".bashrc"]
+- name: Ensures .config/nvim dir exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/nvim"
+    state: directory
+    recurse: true
 - name: Link neovim
   ansible.builtin.file:
     src: "{{ dotfiles_repo }}/nvim/init.vim"
