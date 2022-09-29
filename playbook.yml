@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: Dotfiles provision
+
+  # Load config vars etc
+  pre_tasks:
+    - name: Include playbook configuration.
+      ansible.builtin.include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/*.config.yml"
+      tags: ['always']
+
+  tasks:
+    - ansible.builtin.import_tasks: tasks/configure.yml
+      tags: ['configure']
+    - ansible.builtin.import_tasks: tasks/install-dependencies.yml
+      tags: ['install-dependencies']
+      become: true
+    - ansible.builtin.import_tasks: tasks/build-software.yml
+      tags: ['build']
+      become: true
+
+    # - import_tasks: tasks/install.yml
+    #   tags: ['programs', 'build']

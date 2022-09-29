@@ -1,0 +1,15 @@
+- name: Clone dotfiles git repo
+  ansible.builtin.git:
+    repo: 'https://github.com/vallezw/dotfiles.git'
+    dest: "{{ dotfiles_repo }}"
+- name: Link .xinitrc & .bashrc
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo }}/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    state: link
+  loop: [".xinitrc", ".bashrc"]
+- name: Link neovim
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo }}/nvim/init.vim"
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    state: link
