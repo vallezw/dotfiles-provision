@@ -4,6 +4,7 @@ general_packages:
   - picom
   - dbus
   - neovim
+  - vim
   - cmake
   - gcc
 
