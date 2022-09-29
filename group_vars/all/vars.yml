@@ -23,6 +23,8 @@ dwm_bar_packages:
   - pamixer
   - spotifyd
   - playerctl
+  - xorg-xsetroot
+
 
 dotfiles_repo: "{{ ansible_env.HOME }}/dotfiles"
 
