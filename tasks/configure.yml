@@ -7,6 +7,7 @@
     src: "{{ dotfiles_repo }}/{{ item }}"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
     state: link
+    force: yes
   loop: [".xinitrc", ".bashrc"]
 - name: Link neovim
   ansible.builtin.file:
