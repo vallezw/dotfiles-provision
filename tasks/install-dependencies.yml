@@ -9,7 +9,7 @@
 - name: Ensure dwm_bar_dep packages are installed.
   ansible.builtin.package: 
     name: "{{ item }}"
-    state: present
-    when:
-      - ansible_distribution == "Archlinux"
+    state: present  
+  when:
+    - ansible_distribution == "Archlinux"
   loop: "{{ dwm_bar_packages }}"
